@@ -1,0 +1,39 @@
+{
+  "name": "wallet-keeper",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check-all": "npm run type-check && npm run lint && npm run format:check"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
+    "bignumber.js": "^9.3.0",
+    "classnames": "^2.5.1",
+    "ethers": "^6.14.4",
+    "next": "15.3.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.58.0",
+    "react-redux": "^9.2.0",
+    "react-toastify": "^11.0.5"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@svgr/webpack": "^8.1.0",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.3",
+    "prettier": "^3.5.3",
+    "sass": "^1.89.2",
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,33 @@
+@import "styles/breakpoints";
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: calc(1rem + 102px) 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+
+    @include smaller-than-xxl {
+      padding: calc(1rem + 102px) 1.5rem 1rem;
+    }
+
+    @include smaller-than-lg {
+      padding: calc(1rem + 150px) 1rem 1rem;
+    }
+
+    @include smaller-than-sm {
+      padding: calc(1rem + 136px) 0.75rem 1rem;
+    }
+
+    @include smaller-than-xs {
+      padding: calc(1rem + 136px) 0.5rem 1rem;
+    }
+  }
+}

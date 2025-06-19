@@ -1,0 +1,52 @@
+@import "styles/breakpoints";
+
+.container {
+  max-width: 1400px;
+
+  @include smaller-than-xxl {
+    padding: 0 8px;
+  }
+
+  @include smaller-than-lg {
+    padding: 0 16px;
+  }
+
+  @include smaller-than-sm {
+    padding: 0 8px;
+  }
+
+  @include smaller-than-xs {
+    padding: 0 4px;
+  }
+
+  .walletGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+
+    @media (min-width: 1200px) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    @media (min-width: 900px) and (max-width: 1199px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    @include smaller-than-xl {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @include smaller-than-sm {
+      gap: 14px;
+    }
+
+    @include smaller-than-xs {
+      gap: 12px;
+    }
+  }
+}
+
+

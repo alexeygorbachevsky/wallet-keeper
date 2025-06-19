@@ -1,0 +1,68 @@
+@import "styles/breakpoints";
+
+.controls {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 32px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  @include smaller-than-xxl {
+    padding: 18px;
+    margin-bottom: 28px;
+    gap: 0.875rem;
+  }
+
+  @include smaller-than-lg {
+    padding: 16px;
+    margin-bottom: 24px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  @include smaller-than-sm {
+    padding: 14px;
+    margin-bottom: 20px;
+    gap: 0.875rem;
+  }
+
+  @include smaller-than-xs {
+    padding: 12px;
+    margin-bottom: 18px;
+    gap: 0.75rem;
+  }
+
+  .searchInput {
+    width: 100%;
+    max-width: 500px;
+
+    @include smaller-than-xxl {
+      max-width: 450px;
+    }
+
+    @include smaller-than-lg {
+      max-width: none;
+    }
+  }
+
+  .balanceFilter {
+    flex-shrink: 0;
+    white-space: nowrap;
+    min-width: fit-content;
+
+    @include smaller-than-lg {
+      align-self: flex-start;
+      white-space: normal;
+    }
+
+    @include smaller-than-sm {
+      font-size: 0.9rem;
+    }
+  }
+} 

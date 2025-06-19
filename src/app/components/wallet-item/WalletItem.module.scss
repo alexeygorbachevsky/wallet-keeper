@@ -1,0 +1,517 @@
+@import "styles/breakpoints";
+
+.container {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  position: relative;
+
+  &:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  @include smaller-than-xxl {
+    padding: 18px;
+  }
+
+  @include smaller-than-lg {
+    padding: 16px;
+  }
+
+  @include smaller-than-sm {
+    padding: 14px;
+  }
+
+  @include smaller-than-xs {
+    padding: 12px;
+  }
+
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    gap: 16px;
+
+    @include smaller-than-xxl {
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    @include smaller-than-lg {
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    @include smaller-than-sm {
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .walletInfo {
+      width: 100%;
+
+      .nameSection {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+
+        @include smaller-than-sm {
+          gap: 6px;
+          margin-bottom: 6px;
+        }
+
+        .name {
+          font-size: 16px;
+          font-weight: 600;
+          color: #1e293b;
+          margin: 0;
+          word-break: break-word;
+
+          @include smaller-than-xxl {
+            font-size: 15px;
+          }
+
+          @include smaller-than-sm {
+            font-size: 14px;
+          }
+
+          @include smaller-than-xs {
+            font-size: 13px;
+          }
+        }
+      }
+
+      .address {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 6px;
+
+        @include smaller-than-sm {
+          gap: 6px;
+          margin-bottom: 5px;
+        }
+
+        .addressText {
+          font-family: "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", monospace;
+          font-size: 13px;
+          color: #64748b;
+          background: #f8fafc;
+          padding: 4px 8px;
+          border-radius: 6px;
+          border: 1px solid #e2e8f0;
+
+          @include smaller-than-xxl {
+            font-size: 12px;
+            padding: 3px 6px;
+          }
+
+          @include smaller-than-sm {
+            font-size: 11px;
+            padding: 2px 5px;
+          }
+        }
+
+        .copyButton {
+          padding: 2px 6px;
+          border: 1px solid #bae6fd;
+          background: #f0f9ff;
+          border-radius: 4px;
+          font-size: 10px;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          color: #0369a1;
+
+          &:hover {
+            background: #e0f2fe;
+            border-color: #7dd3fc;
+            color: #0284c7;
+          }
+
+          &:active {
+            background: #bae6fd;
+          }
+
+          &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+          }
+        }
+      }
+
+      .date {
+        font-size: 12px;
+        color: #94a3b8;
+
+        @include smaller-than-sm {
+          font-size: 11px;
+        }
+      }
+    }
+
+    .actions {
+      align-self: flex-start;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      flex-shrink: 0;
+
+      @include smaller-than-lg {
+        align-self: stretch;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      @include smaller-than-sm {
+        gap: 6px;
+      }
+
+      .balanceButton,
+      .deleteButton {
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 50px;
+        height: 28px;
+
+        @include smaller-than-lg {
+          flex: 1;
+          min-width: 0;
+        }
+
+        @include smaller-than-sm {
+          padding: 5px 8px;
+          font-size: 10px;
+          height: 26px;
+        }
+      }
+
+      .balanceButton {
+        background: #f1f5f9;
+        color: #475569;
+        border: 1px solid #e2e8f0;
+
+        &:hover:not(:disabled) {
+          background: #e2e8f0;
+          color: #334155;
+        }
+
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+      }
+
+      .deleteButton {
+        background: #fef2f2;
+        color: #dc2626;
+        border: 1px solid #fecaca;
+
+        &:hover {
+          background: #fee2e2;
+          border-color: #fca5a5;
+        }
+      }
+    }
+  }
+
+  .balance {
+    margin-bottom: 14px;
+    padding: 12px;
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+
+    @include smaller-than-xxl {
+      margin-bottom: 12px;
+      padding: 10px;
+    }
+
+    @include smaller-than-sm {
+      margin-bottom: 10px;
+      padding: 8px;
+    }
+
+    .balanceHeader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+
+      @include smaller-than-sm {
+        margin-bottom: 6px;
+      }
+
+      .balanceTitle {
+        font-size: 12px;
+        font-weight: 600;
+        color: #374151;
+        margin: 0;
+
+        @include smaller-than-sm {
+          font-size: 11px;
+        }
+      }
+
+      .refreshButton {
+        width: 24px;
+        height: 24px;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        color: #64748b;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover:not(:disabled) {
+          background: #f8fafc;
+          border-color: #cbd5e1;
+          color: #475569;
+          transform: rotate(180deg);
+        }
+
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+
+          .spinner {
+            animation: spin 1s linear infinite;
+          }
+        }
+
+        @include smaller-than-sm {
+          width: 22px;
+          height: 22px;
+          font-size: 12px;
+        }
+
+        .spinner {
+          width: 12px;
+          height: 12px;
+          border: 2px solid #e2e8f0;
+          border-top: 2px solid #3b82f6;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+      }
+    }
+
+    .balancePlaceholder {
+      font-size: 11px;
+      color: #94a3b8;
+      font-style: italic;
+      text-align: center;
+      padding: 8px;
+      background: white;
+      border-radius: 4px;
+      border: 1px dashed #e2e8f0;
+
+      @include smaller-than-sm {
+        font-size: 10px;
+        padding: 6px;
+      }
+    }
+
+    .balanceList {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+
+      @include smaller-than-sm {
+        gap: 2px;
+      }
+
+      .balanceItem {
+        font-size: 11px;
+        color: #64748b;
+        font-family: "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", monospace;
+        background: white;
+        padding: 3px 6px;
+        border-radius: 4px;
+        border: 1px solid #e2e8f0;
+
+        @include smaller-than-sm {
+          font-size: 10px;
+          padding: 2px 5px;
+        }
+      }
+    }
+  }
+
+  .privateKeySection {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 14px;
+
+    @include smaller-than-xxl {
+      padding-top: 12px;
+    }
+
+    @include smaller-than-sm {
+      padding-top: 10px;
+    }
+
+    .showKeyButton {
+      width: 100%;
+      padding: 8px 14px;
+      background: #f8fafc;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: #f1f5f9;
+        border-color: #cbd5e1;
+      }
+
+      @include smaller-than-sm {
+        padding: 6px 12px;
+        font-size: 11px;
+      }
+    }
+
+    .privateKeyContainer {
+      background: #fef7f0;
+      border: 1px solid #fed7aa;
+      border-radius: 8px;
+      padding: 12px;
+
+      @include smaller-than-xxl {
+        padding: 10px;
+      }
+
+      @include smaller-than-sm {
+        padding: 8px;
+      }
+
+      .privateKeyHeader {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        gap: 12px;
+
+        @include smaller-than-sm {
+          margin-bottom: 6px;
+          gap: 8px;
+        }
+
+        .privateKeyLabel {
+          font-size: 11px;
+          font-weight: 600;
+          color: #92400e;
+
+          @include smaller-than-sm {
+            font-size: 10px;
+          }
+        }
+
+        .privateKeyActions {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+
+          @include smaller-than-sm {
+            gap: 4px;
+          }
+
+          .hideButton {
+            padding: 2px 6px;
+            background: transparent;
+            color: #92400e;
+            border: 1px solid #fed7aa;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+
+            &:hover {
+              background: #fef3c7;
+              border-color: #fcd34d;
+            }
+
+            @include smaller-than-sm {
+              padding: 1px 4px;
+              font-size: 9px;
+            }
+          }
+        }
+      }
+
+      .privateKeyText {
+        font-family: "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", monospace;
+        font-size: 11px;
+        color: #92400e;
+        background: white;
+        padding: 8px;
+        border-radius: 6px;
+        border: 1px solid #fed7aa;
+        word-break: break-all;
+        margin-bottom: 8px;
+
+        @include smaller-than-xxl {
+          font-size: 10px;
+          padding: 6px;
+        }
+
+        @include smaller-than-sm {
+          font-size: 9px;
+          padding: 5px;
+          margin-bottom: 6px;
+        }
+      }
+
+      .warning {
+        font-size: 10px;
+        color: #dc2626;
+        font-weight: 500;
+        text-align: center;
+        background: #fef2f2;
+        padding: 4px 8px;
+        border-radius: 4px;
+        border: 1px solid #fecaca;
+
+        @include smaller-than-sm {
+          font-size: 9px;
+          padding: 3px 6px;
+        }
+      }
+    }
+  }
+
+  .nameActionsRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: space-between;
+
+    @include smaller-than-sm {
+      gap: 6px;
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

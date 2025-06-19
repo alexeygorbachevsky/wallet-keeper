@@ -1,0 +1,122 @@
+@import "styles/breakpoints";
+
+.networkCard {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    background: #f8fafc;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+    border-color: #3b82f6;
+
+    @include smaller-than-sm {
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.18);
+    }
+  }
+
+  @include smaller-than-sm {
+    padding: 6px 8px;
+    border-radius: 4px;
+  }
+
+  .networkContent {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    @include smaller-than-sm {
+      gap: 6px;
+    }
+
+    .networkName {
+      font-size: 11px;
+      font-weight: 600;
+      color: #374151;
+      flex-shrink: 0;
+      min-width: 100px;
+      text-align: left;
+
+      @include smaller-than-sm {
+        font-size: 10px;
+        min-width: 80px;
+      }
+    }
+
+    .balanceArea {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      @include smaller-than-sm {
+        gap: 6px;
+      }
+
+      .balance {
+        font-size: 11px;
+        font-weight: 600;
+        color: #374151;
+        text-align: right;
+        min-width: 80px;
+
+        @include smaller-than-sm {
+          font-size: 10px;
+          min-width: 60px;
+        }
+      }
+    }
+  }
+}
+
+.error {
+  color: #dc2626;
+  font-weight: 400;
+}
+
+.spinner {
+  width: 12px;
+  height: 12px;
+  border: 2px solid #e5e7eb;
+  border-top: 2px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+
+  @include smaller-than-sm {
+    width: 10px;
+    height: 10px;
+    border-width: 1.5px;
+  }
+}
+
+.notLoaded {
+  font-size: 11px;
+  font-weight: 400;
+  color: #6b7280;
+  text-align: right;
+  min-width: 80px;
+  cursor: pointer;
+
+  &:hover {
+    color: #374151;
+  }
+
+  @include smaller-than-sm {
+    font-size: 10px;
+    min-width: 60px;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+} 

@@ -1,0 +1,19 @@
+@import "styles/breakpoints";
+
+.container {
+  margin-bottom: 16px;
+
+  @include smaller-than-sm {
+    margin-bottom: 12px;
+  }
+}
+
+.networks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  @include smaller-than-sm {
+    gap: 8px;
+  }
+}

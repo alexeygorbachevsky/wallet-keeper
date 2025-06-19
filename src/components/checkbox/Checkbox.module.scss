@@ -1,0 +1,166 @@
+@import "styles/breakpoints";
+
+.container {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.875rem;
+  color: #374151;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+
+  &:hover {
+    color: #1f2937;
+  }
+
+  &.small {
+    gap: 0.25rem;
+    font-size: 0.75rem;
+
+    .checkmark {
+      width: 0.875rem;
+      height: 0.875rem;
+      border-width: 1.5px;
+      border-radius: 4px;
+
+      @include smaller-than-sm {
+        width: 0.8125rem;
+        height: 0.8125rem;
+        border-width: 1.25px;
+      }
+
+      svg {
+        width: 0.9em;
+        height: 0.9em;
+
+        @include smaller-than-sm {
+          width: 0.8em;
+          height: 0.8em;
+        }
+      }
+    }
+
+    .checkbox:checked ~ .checkmark {
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+
+      @include smaller-than-sm {
+        box-shadow: 0 0 0 1.5px rgba(59, 130, 246, 0.1);
+      }
+    }
+
+    .checkbox:focus ~ .checkmark,
+    .checkbox:focus-visible ~ .checkmark {
+      border-radius: 4px;
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+
+      @include smaller-than-sm {
+        box-shadow: 0 0 0 1.5px rgba(59, 130, 246, 0.2);
+      }
+    }
+
+    .label {
+      font-size: 0.75rem;
+      font-weight: 400;
+
+      @include smaller-than-sm {
+        font-size: 0.6875rem;
+      }
+    }
+  }
+
+  @include smaller-than-sm {
+    gap: 0.375rem;
+    font-size: 0.8125rem;
+
+    &.small {
+      gap: 0.1875rem;
+      font-size: 0.6875rem;
+    }
+  }
+
+  .checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:checked ~ .checkmark {
+      background: #3b82f6;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+
+      @include smaller-than-sm {
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+      }
+    }
+
+    &:focus ~ .checkmark,
+    &:focus-visible ~ .checkmark {
+      border-radius: 6px;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+
+      @include smaller-than-sm {
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+      }
+    }
+
+    &:disabled ~ .checkmark {
+      background: #f3f4f6;
+      border-color: #d1d5db;
+      cursor: not-allowed;
+    }
+
+    &:disabled ~ .label {
+      color: #9ca3af;
+      cursor: not-allowed;
+    }
+  }
+
+  .checkmark {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.125rem;
+    height: 1.125rem;
+    border: 2px solid #d1d5db;
+    border-radius: 6px;
+    background: white;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    overflow: hidden;
+
+    @include smaller-than-sm {
+      width: 1rem;
+      height: 1rem;
+      border-width: 1.75px;
+    }
+
+    svg {
+      display: block;
+      width: 1.15em;
+      height: 1.15em;
+      color: white;
+
+      @include smaller-than-sm {
+        width: 1em;
+        height: 1em;
+      }
+    }
+  }
+
+  .label {
+    font-weight: 500;
+    line-height: 1.4;
+    white-space: nowrap;
+    font-size: 0.9375rem;
+
+    @include smaller-than-sm {
+      font-size: 0.875rem;
+    }
+  }
+}
