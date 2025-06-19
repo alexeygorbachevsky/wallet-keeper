@@ -35,9 +35,8 @@ const Button: FC<ButtonProps> = ({
     {...props}
   >
     {loading && <span className={styles.spinner} />}
-
     <span className={styles.content}>{children}</span>
   </button>
 );
 
-export default Button
+export default Button;
