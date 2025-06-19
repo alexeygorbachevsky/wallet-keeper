@@ -6,22 +6,16 @@ import classNames from "classnames";
 import styles from "./Button.module.scss";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "outline" | "ghost" | "danger";
+  variant?: "primary" | "secondary" | "danger";
   size?: "small" | "medium";
-  fullWidth?: boolean;
   loading?: boolean;
-  leftIcon?: ReactNode;
-  rightIcon?: ReactNode;
   children: ReactNode;
 }
 
 const Button: FC<ButtonProps> = ({
   variant = "primary",
   size = "medium",
-  fullWidth = false,
   loading = false,
-  leftIcon,
-  rightIcon,
   children,
   className = "",
   disabled,
@@ -33,7 +27,6 @@ const Button: FC<ButtonProps> = ({
       styles[variant],
       styles[size],
       {
-        [styles.fullWidth]: fullWidth,
         [styles.loading]: loading,
       },
       className
@@ -43,15 +36,7 @@ const Button: FC<ButtonProps> = ({
   >
     {loading && <span className={styles.spinner} />}
 
-    {!loading && leftIcon && (
-      <span className={styles.leftIcon}>{leftIcon}</span>
-    )}
-
     <span className={styles.content}>{children}</span>
-
-    {!loading && rightIcon && (
-      <span className={styles.rightIcon}>{rightIcon}</span>
-    )}
   </button>
 );
 

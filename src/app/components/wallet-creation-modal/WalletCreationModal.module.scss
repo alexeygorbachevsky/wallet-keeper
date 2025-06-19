@@ -128,36 +128,3 @@
     }
   }
 }
-
-.button {
-  min-width: 120px;
-
-  @include smaller-than-md {
-    width: 100%;
-  }
-
-  &.secondaryButton {
-    background: #f3f4f6;
-    color: #374151;
-    border: 1px solid #d1d5db;
-
-    &:hover {
-      background: #e5e7eb;
-    }
-  }
-
-  &.primaryButton {
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-    color: white;
-    border: none;
-
-    &:hover {
-      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.25);
-    }
-  }
-
-  &.loading {
-    opacity: 0.7;
-    pointer-events: none;
-  }
-}

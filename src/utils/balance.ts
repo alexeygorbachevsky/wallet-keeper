@@ -17,11 +17,15 @@ export const getBalance = async (
 export const formatBalance = (balance: string, symbol: string): string => {
   const balanceBN = BigNumber(balance || "");
 
-  if (!balance || balanceBN.isZero() || balanceBN.lt(0.000001)) {
+  if (!balance || balanceBN.isZero()) {
     return `0 ${symbol}`;
   }
 
-  const balanceInEth = parseFloat(ethers.formatEther(balance));
+  const balanceInEth = BigNumber(ethers.formatEther(balance));
+
+  if (balanceInEth.lt(0.000001)) {
+    return `0 ${symbol}`;
+  }
 
   return `${balanceInEth.toFixed(6)} ${symbol}`;
 };
