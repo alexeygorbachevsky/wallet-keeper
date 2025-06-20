@@ -2,6 +2,9 @@
 
 .container {
   max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 
   @include smaller-than-xxl {
     padding: 0 8px;
@@ -48,5 +51,3 @@
     }
   }
 }
-
-

@@ -18,12 +18,7 @@ import NoResults from "./components/no-results";
 import styles from "./WalletList.module.scss";
 
 const WalletList = () => {
-  const { 
-    wallets, 
-    loading, 
-    error, 
-    loadWallets
-  } = useConnect();
+  const { wallets, loading, error, loadWallets } = useConnect();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [onlyWithBalances, setOnlyWithBalances] = useState(false);
@@ -48,15 +43,27 @@ const WalletList = () => {
   );
 
   if (loading) {
-    return <LoadingState className={styles.container} />;
+    return (
+      <div className={styles.container}>
+        <LoadingState />
+      </div>
+    );
   }
 
   if (error) {
-    return <ErrorState className={styles.container} />;
+    return (
+      <div className={styles.container}>
+        <ErrorState />
+      </div>
+    );
   }
 
   if (!wallets.length) {
-    return <EmptyState className={styles.container} />;
+    return (
+      <div className={styles.container}>
+        <EmptyState />
+      </div>
+    );
   }
 
   return (
@@ -78,10 +85,7 @@ const WalletList = () => {
       {filteredWallets.length ? (
         <div className={styles.walletGrid}>
           {filteredWallets.map(wallet => (
-            <WalletItem
-              key={wallet.id}
-              wallet={wallet}
-            />
+            <WalletItem key={wallet.id} wallet={wallet} />
           ))}
         </div>
       ) : (

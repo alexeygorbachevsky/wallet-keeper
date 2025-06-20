@@ -4,12 +4,9 @@ import { useForm } from "react-hook-form";
 
 import { ModalNames } from "store/slices/modal";
 
-import { MAINNET_NETWORKS, TESTNET_NETWORKS } from "constants/networks";
-
 import {
   createWallet as createWalletThunk,
   clearError,
-  updateNetworkBalance,
 } from "store/slices/wallets";
 
 import { useAppDispatch } from "hooks/redux";
@@ -38,7 +35,7 @@ const WalletCreationModal = () => {
     getValues,
     formState: { errors, isValid, isSubmitting },
   } = useForm<WalletFormData>({
-    mode: "onChange",
+    mode: "onBlur",
     defaultValues: {
       walletName: "",
       password: "",
@@ -61,20 +58,11 @@ const WalletCreationModal = () => {
   };
 
   const onSubmit = async (data: WalletFormData) => {
-    const newWallet = await dispatch(
+    await dispatch(
       createWalletThunk({
         password: data.password,
         name: data.walletName,
       })
-    ).unwrap();
-
-    TESTNET_NETWORKS.concat(MAINNET_NETWORKS).forEach(network =>
-      dispatch(
-        updateNetworkBalance({
-          walletId: newWallet.id,
-          networkName: network.name,
-        })
-      )
     );
 
     reset();
