@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useDeferredValue } from "react";
 
 import { hasWalletBalance } from "utils/balance";
 
@@ -31,6 +31,7 @@ const WalletList = () => {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [onlyWithBalances, setOnlyWithBalances] = useState(false);
+  const deferredSearchQuery = useDeferredValue(searchQuery);
 
   const passwordModal = useModal(ModalNames.password);
   const confirmDeleteModal = useModal(ModalNames.confirmDelete);
@@ -47,11 +48,15 @@ const WalletList = () => {
         }
 
         return (
-          wallet.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          wallet.address.toLowerCase().includes(searchQuery.toLowerCase())
+          wallet.name
+            .toLowerCase()
+            .includes(deferredSearchQuery.toLowerCase()) ||
+          wallet.address
+            .toLowerCase()
+            .includes(deferredSearchQuery.toLowerCase())
         );
       }),
-    [wallets, searchQuery, onlyWithBalances]
+    [wallets, deferredSearchQuery, onlyWithBalances]
   );
 
   const handleShowPassword = (
