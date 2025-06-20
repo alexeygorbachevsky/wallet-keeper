@@ -26,46 +26,46 @@ interface ExtraInitialState {
   error: string | null;
 }
 
-export const createWallet = createAppAsyncThunk<
-  Wallet,
-  GenerateWalletPayload
->("wallets/generate", async (payload, { rejectWithValue }) => {
-  try {
-    const { name, password } = payload;
+export const createWallet = createAppAsyncThunk<Wallet, GenerateWalletPayload>(
+  "wallets/generate",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const { name, password } = payload;
 
-    const allNetworks = [...MAINNET_NETWORKS, ...TESTNET_NETWORKS];
-    const initialNetworkBalances = allNetworks.reduce(
-      (acc, network) => {
-        acc[network.name] = {
-          network: network.name,
-          balance: "0",
-          loading: false,
-        };
-        return acc;
-      },
-      {} as Record<NetworkNames, NetworkBalance>
-    );
+      const allNetworks = [...MAINNET_NETWORKS, ...TESTNET_NETWORKS];
+      const initialNetworkBalances = allNetworks.reduce(
+        (acc, network) => {
+          acc[network.name] = {
+            network: network.name,
+            balance: "0",
+            loading: false,
+          };
+          return acc;
+        },
+        {} as Record<NetworkNames, NetworkBalance>
+      );
 
-    await sleep();
-    const { address, privateKey } = generateWallet();
-    const encryptedJson = await encryptPrivateKey(privateKey, password);
+      await sleep();
+      const { address, privateKey } = generateWallet();
+      const encryptedJson = await encryptPrivateKey(privateKey, password);
 
-    const newWallet: Wallet = {
-      id: crypto.randomUUID(),
-      name: name || `Wallet ${Date.now()}`,
-      address,
-      encryptedJson,
-      createdAt: Date.now(),
-      networkBalances: initialNetworkBalances,
-    };
+      const newWallet: Wallet = {
+        id: crypto.randomUUID(),
+        name: name || `Wallet ${Date.now()}`,
+        address,
+        encryptedJson,
+        createdAt: Date.now(),
+        networkBalances: initialNetworkBalances,
+      };
 
-    return newWallet;
-  } catch (error) {
-    return rejectWithValue(
-      error instanceof Error ? error.message : "Error generating wallet"
-    );
+      return newWallet;
+    } catch (error) {
+      return rejectWithValue(
+        error instanceof Error ? error.message : "Error generating wallet"
+      );
+    }
   }
-});
+);
 
 export const createWalletReducer = (
   builder: ActionReducerMapBuilder<
@@ -79,13 +79,11 @@ export const createWalletReducer = (
 
       walletsAdapter.addOne(state, action.payload);
 
-      const allWallets = state.ids.map(
-        (id: string) => state.entities[id]
-      ) as Wallet[];
+      const allWallets = walletsAdapter.getSelectors().selectAll(state);
       saveWallets(allWallets);
     })
     .addCase(createWallet.rejected, (_state, action) => {
-      toast.error(action.error.message || "Error generating wallet")
+      toast.error(action.error.message || "Error generating wallet");
     });
 
   return builder;

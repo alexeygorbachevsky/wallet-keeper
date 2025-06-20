@@ -5,7 +5,9 @@ const WALLETS_STORAGE_KEY = "walletKeeper/wallets";
 const isValidEncryptedJson = (encryptedJson: string): boolean => {
   try {
     const parsed = JSON.parse(encryptedJson);
-    return parsed && typeof parsed === "object" && parsed.crypto;
+    return (
+      parsed && typeof parsed === "object" && (parsed.crypto || parsed.Crypto)
+    );
   } catch {
     return false;
   }

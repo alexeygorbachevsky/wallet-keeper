@@ -1,26 +1,25 @@
-import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "hooks/redux";
 
-import { 
+import {
   loadWallets as loadWalletThunk,
-  selectAllWallets
+  selectAllWallets,
 } from "store/slices/wallets";
 
-
-export const useConnect=()=>{
+export const useConnect = () => {
   const wallets = useAppSelector(selectAllWallets);
   const loading = useAppSelector(state => state.wallet.loading);
   const error = useAppSelector(state => state.wallet.error);
 
   const dispatch = useAppDispatch();
 
-  const loadWallets=()=>{
+  const loadWallets = () => {
     dispatch(loadWalletThunk());
-  }
+  };
 
   return {
     wallets,
     loading,
     error,
-    loadWallets
-  }
-}
+    loadWallets,
+  };
+};

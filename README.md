@@ -1,6 +1,6 @@
 # Wallet Keeper
 
-Multichain EVM wallet management application with support for multiple networks and secure operations.
+Multichain EVM wallet management application with support for multiple networks with password protection.
 
 🌐 **Live Demo:** [Wallet Keeper](https://wallet-keeper-alexeygorbachevskiys-projects.vercel.app)
 
