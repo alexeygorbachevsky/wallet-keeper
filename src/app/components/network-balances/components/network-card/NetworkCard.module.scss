@@ -81,6 +81,14 @@
 .error {
   color: #dc2626;
   font-weight: 400;
+  font-size: 11px;
+  text-align: right;
+  min-width: 80px;
+
+  @include smaller-than-sm {
+    font-size: 10px;
+    min-width: 60px;
+  }
 }
 
 .spinner {
@@ -117,6 +125,10 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-} 
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
