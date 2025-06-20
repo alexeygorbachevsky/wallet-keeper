@@ -5,43 +5,26 @@ import { toast } from "react-toastify";
 
 import { Wallet } from "types/wallet";
 
-import { removeWallet } from "store/slices/wallets";
-import { ModalNames } from "store/slices/modal";
-
-import { useAppDispatch } from "hooks/redux";
-import { useModal } from "hooks/useModal";
-
 import NetworkBalances from "../network-balances";
-
-import ConfirmDeleteModal from "./components/confirm-delete-modal";
-import PasswordModal from "./components/password-modal";
 
 import styles from "./WalletItem.module.scss";
 
 interface WalletItemProps {
   wallet: Wallet;
+  onShowPassword: (
+    walletId: string,
+    walletName: string,
+    encryptedJson: string
+  ) => void;
+  onDeleteWallet: (walletId: string, walletName: string) => void;
 }
 
-interface PasswordModalProps {
-  walletId: string;
-  walletName: string;
-  encryptedJson: string;
-}
-
-interface ConfirmDeleteModalProps {
-  walletId: string;
-  walletName: string;
-}
-
-const WalletItem = ({ wallet }: WalletItemProps) => {
-  const dispatch = useAppDispatch();
-
+const WalletItem = ({
+  wallet,
+  onShowPassword,
+  onDeleteWallet,
+}: WalletItemProps) => {
   const [copiedAddress, setCopiedAddress] = useState(false);
-
-  const passwordModal = useModal<PasswordModalProps>(ModalNames.password);
-  const confirmDeleteModal = useModal<ConfirmDeleteModalProps>(
-    ModalNames.confirmDelete
-  );
 
   const handleCopyAddress = async () => {
     try {
@@ -55,11 +38,6 @@ const WalletItem = ({ wallet }: WalletItemProps) => {
     }
   };
 
-  const handleDelete = (walletId: string) => {
-    dispatch(removeWallet(walletId));
-    confirmDeleteModal.close();
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -70,12 +48,7 @@ const WalletItem = ({ wallet }: WalletItemProps) => {
             </div>
             <div className={styles.actions}>
               <button
-                onClick={() =>
-                  confirmDeleteModal.open({
-                    walletId: wallet.id,
-                    walletName: wallet.name,
-                  })
-                }
+                onClick={() => onDeleteWallet(wallet.id, wallet.name)}
                 className={styles.deleteButton}
                 title="Delete wallet"
               >
@@ -108,21 +81,14 @@ const WalletItem = ({ wallet }: WalletItemProps) => {
 
       <div className={styles.privateKeySection}>
         <button
-          onClick={() => {
-            passwordModal.open({
-              walletId: wallet.id,
-              walletName: wallet.name,
-              encryptedJson: wallet.encryptedJson,
-            });
-          }}
+          onClick={() =>
+            onShowPassword(wallet.id, wallet.name, wallet.encryptedJson)
+          }
           className={styles.showKeyButton}
         >
           Show Private Key
         </button>
       </div>
-
-      <PasswordModal />
-      <ConfirmDeleteModal onConfirm={handleDelete} />
     </div>
   );
 };

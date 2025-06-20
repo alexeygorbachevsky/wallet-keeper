@@ -117,8 +117,8 @@ const PasswordModal = () => {
         {!privateKey ? (
           <>
             <p className={styles.description}>
-              Enter the password for &quot;{modal.props?.walletName}&quot; to access its
-              private key.
+              Enter the password for &quot;{modal.props?.walletName}&quot; to
+              access its private key.
             </p>
             <form
               onSubmit={handleSubmit(handleFormSubmit)}
