@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 import { Wallet } from "types/wallet";
 
-import NetworkBalances from "../network-balances";
+import NetworkBalances from "./components/network-balances";
 
 import styles from "./WalletItem.module.scss";
 

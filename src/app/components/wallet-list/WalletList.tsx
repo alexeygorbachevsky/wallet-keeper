@@ -10,8 +10,6 @@ import { ModalNames } from "store/slices/modal";
 import { useAppDispatch } from "hooks/redux";
 import { useModal } from "hooks/useModal";
 
-import WalletItem from "app/components/wallet-item";
-
 import LoadingState from "./components/loading-state";
 import ErrorState from "./components/error-state";
 import EmptyState from "./components/empty-state";
@@ -20,6 +18,7 @@ import WalletControls from "./components/wallet-controls";
 import NoResults from "./components/no-results";
 import PasswordModal from "./components/password-modal";
 import ConfirmDeleteModal from "./components/confirm-delete-modal";
+import WalletItem from "./components/wallet-item";
 
 import { useConnect } from "./duck/hooks";
 

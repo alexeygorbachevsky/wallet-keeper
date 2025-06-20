@@ -26,7 +26,11 @@ const NetworkBalances = ({ wallet }: NetworkBalancesProps) => {
 
       <div className={styles.networks}>
         {showTestnet && <NetworkSection title="testnet" wallet={wallet} />}
-        <NetworkSection title="mainnet" wallet={wallet} showTitle={showTestnet} />
+        <NetworkSection
+          title="mainnet"
+          wallet={wallet}
+          showTitle={showTestnet}
+        />
       </div>
     </div>
   );
