@@ -5,12 +5,16 @@ import { toast } from "react-toastify";
 
 import { Wallet } from "types/wallet";
 
+import { useAppSelector } from "hooks/redux";
+
+import { selectWalletById } from "store/slices/wallets";
+
 import NetworkBalances from "./components/network-balances";
 
 import styles from "./WalletItem.module.scss";
 
 interface WalletItemProps {
-  wallet: Wallet;
+  walletId: Wallet["id"];
   onShowPassword: (
     walletId: string,
     walletName: string,
@@ -20,10 +24,12 @@ interface WalletItemProps {
 }
 
 const WalletItem = ({
-  wallet,
+  walletId,
   onShowPassword,
   onDeleteWallet,
 }: WalletItemProps) => {
+  const wallet = useAppSelector(state => selectWalletById(state, walletId));
+
   const [copiedAddress, setCopiedAddress] = useState(false);
 
   const handleCopyAddress = async () => {

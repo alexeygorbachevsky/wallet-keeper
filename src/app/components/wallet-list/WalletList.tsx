@@ -127,7 +127,7 @@ const WalletList = () => {
           {filteredWallets.map(wallet => (
             <WalletItem
               key={wallet.id}
-              wallet={wallet}
+              walletId={wallet.id}
               onShowPassword={handleShowPassword}
               onDeleteWallet={handleDeleteWallet}
             />
