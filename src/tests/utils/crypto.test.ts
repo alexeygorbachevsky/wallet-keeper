@@ -41,7 +41,7 @@ describe.concurrent("crypto utils", () => {
       const decrypted = await decryptPrivateKey(encrypted, password);
 
       expect(decrypted).toBe(privateKey);
-    }, 15000);
+    }, 10000);
 
     it("should throw error with wrong password", async () => {
       const privateKey =

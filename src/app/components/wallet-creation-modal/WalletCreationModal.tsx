@@ -17,7 +17,8 @@ import Modal from "components/modal";
 import Input from "components/input";
 import Button from "components/button";
 
-import { getPasswordStrength } from "./duck/utils";
+import { getPasswordStrength } from "utils/common";
+
 import { WalletFormData } from "./duck/types";
 import { WALLET_VALIDATION_RULES } from "./duck/constants";
 

@@ -6,16 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
-    "type-check": "tsc --noEmit",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
     "test": "vitest",
-    "test:run": "vitest run",
-    "prepare": "husky",
-    "pre-commit": "lint-staged",
-    "pre-push": "yarn type-check && yarn lint && yarn test:run"
+    "type-check": "tsc --noEmit",
+    "lint": "next lint",
+    "prepare": "husky"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",

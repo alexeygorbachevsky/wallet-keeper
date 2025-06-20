@@ -1,1 +1,1 @@
-yarn pre-push
+yarn type-check && yarn lint && npx vitest run
