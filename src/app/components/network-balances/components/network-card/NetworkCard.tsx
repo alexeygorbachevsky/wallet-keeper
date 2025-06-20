@@ -40,6 +40,22 @@ const NetworkCard = ({
     return formatBalance(balance, network.symbol);
   }, [balance, network.symbol]);
 
+  const renderBalanceContent = () => {
+    if (isLoading) {
+      return <span className={styles.spinner}></span>;
+    }
+
+    if (hasError) {
+      return <span className={styles.error}>Retry</span>;
+    }
+
+    if (balanceString) {
+      return <span className={styles.balance}>{balanceString}</span>;
+    }
+
+    return <span className={styles.notLoaded}>Click to load</span>;
+  };
+
   return (
     <button
       type="button"
@@ -56,17 +72,7 @@ const NetworkCard = ({
     >
       <div className={styles.networkContent}>
         <span className={styles.networkName}>{network.name}</span>
-        <div className={styles.balanceArea}>
-          {isLoading ? (
-            <span className={styles.spinner}></span>
-          ) : hasError ? (
-            <span className={styles.error}>Retry</span>
-          ) : balanceString ? (
-            <span className={styles.balance}>{balanceString}</span>
-          ) : (
-            <span className={styles.notLoaded}>Click to load</span>
-          )}
-        </div>
+        <div className={styles.balanceArea}>{renderBalanceContent()}</div>
       </div>
     </button>
   );

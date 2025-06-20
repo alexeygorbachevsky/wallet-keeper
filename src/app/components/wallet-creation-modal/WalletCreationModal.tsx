@@ -33,9 +33,9 @@ const WalletCreationModal = () => {
     setValue,
     reset,
     getValues,
-    formState: { errors, isValid, isSubmitting },
+    formState: { errors, isValid, isSubmitting, touchedFields },
   } = useForm<WalletFormData>({
-    mode: "onBlur",
+    mode: "onTouched",
     defaultValues: {
       walletName: "",
       password: "",
@@ -105,7 +105,9 @@ const WalletCreationModal = () => {
                 placeholder="Min 8 chars, mixed case + number"
                 size="small"
                 disabled={isSubmitting}
-                error={errors.password?.message}
+                error={
+                  touchedFields.password ? errors.password?.message : undefined
+                }
                 rightElement={
                   <button
                     type="button"
@@ -146,7 +148,11 @@ const WalletCreationModal = () => {
               placeholder="Repeat password"
               size="small"
               disabled={isSubmitting}
-              error={errors.confirmPassword?.message}
+              error={
+                touchedFields.confirmPassword
+                  ? errors.confirmPassword?.message
+                  : undefined
+              }
               rightElement={
                 <button
                   type="button"

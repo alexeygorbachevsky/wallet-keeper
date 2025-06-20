@@ -1,7 +1,4 @@
-import {
-  ActionReducerMapBuilder,
-  EntityState,
-} from "@reduxjs/toolkit";
+import { ActionReducerMapBuilder, EntityState } from "@reduxjs/toolkit";
 
 import { Wallet } from "types/wallet";
 
@@ -36,6 +33,10 @@ export const updateNetworkBalance = createAppAsyncThunk<
       const state = getState();
       const wallet = selectWalletById(state, walletId);
 
+      if (!wallet) {
+        return rejectWithValue(`Wallet not found`);
+      }
+
       const allNetworks = [...MAINNET_NETWORKS, ...TESTNET_NETWORKS];
       const network = allNetworks.find(n => n.name === networkName)!;
 
@@ -63,6 +64,10 @@ export const updateNetworkBalanceReducer = (
       const { walletId, networkName } = action.meta.arg;
       const wallet = state.entities[walletId];
 
+      if (!wallet) {
+        return;
+      }
+
       if (!wallet.networkBalances) {
         wallet.networkBalances = {};
       }
@@ -77,6 +82,10 @@ export const updateNetworkBalanceReducer = (
       const { walletId, networkName, balance } = action.payload;
       const wallet = state.entities[walletId];
 
+      if (!wallet) {
+        return;
+      }
+
       wallet.networkBalances![networkName] = {
         network: networkName,
         balance,
@@ -86,6 +95,10 @@ export const updateNetworkBalanceReducer = (
     .addCase(updateNetworkBalance.rejected, (state, action) => {
       const { walletId, networkName } = action.meta.arg;
       const wallet = state.entities[walletId];
+
+      if (!wallet) {
+        return;
+      }
 
       wallet.networkBalances![networkName] = {
         network: networkName,

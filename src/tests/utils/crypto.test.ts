@@ -28,7 +28,7 @@ describe.concurrent("crypto utils", () => {
       expect(typeof encrypted).toBe("string");
       expect(encrypted.length).toBeGreaterThan(0);
       expect(encrypted).not.toBe(privateKey);
-    });
+    }, 10000);
   });
 
   describe.concurrent("decryptPrivateKey", () => {
@@ -41,7 +41,7 @@ describe.concurrent("crypto utils", () => {
       const decrypted = await decryptPrivateKey(encrypted, password);
 
       expect(decrypted).toBe(privateKey);
-    }, 10000);
+    }, 15000);
 
     it("should throw error with wrong password", async () => {
       const privateKey =

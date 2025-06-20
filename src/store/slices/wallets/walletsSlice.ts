@@ -1,4 +1,8 @@
-import { createSlice, PayloadAction, createEntityAdapter } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  PayloadAction,
+  createEntityAdapter,
+} from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
 import { Wallet } from "types/wallet";
@@ -36,12 +40,12 @@ const walletsSlice = createSlice({
       walletsAdapter.removeOne(state, walletId);
 
       try {
-        const allWallets = state.ids.map(id => state.entities[id]) as Wallet[];
+        const allWallets = walletsAdapter.getSelectors().selectAll(state);
         saveWallets(allWallets);
       } catch {
         toast.error("Failed to save wallets");
       }
-    }
+    },
   },
   extraReducers: builder => {
     loadWalletsReducer(builder, walletsAdapter);

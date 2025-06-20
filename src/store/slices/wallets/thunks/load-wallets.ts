@@ -1,4 +1,8 @@
-import { ActionReducerMapBuilder, EntityAdapter, EntityState } from "@reduxjs/toolkit";
+import {
+  ActionReducerMapBuilder,
+  EntityAdapter,
+  EntityState,
+} from "@reduxjs/toolkit";
 
 import { Wallet } from "types/wallet";
 import { loadWalletsFromStorage } from "utils/storage";
@@ -18,7 +22,7 @@ export const loadWallets = createAppAsyncThunk<LoadWalletsResult, void>(
   "wallets/loadWallets",
   async (_, { rejectWithValue }) => {
     try {
-      const wallets = await loadWalletsFromStorage();
+      const wallets = loadWalletsFromStorage();
 
       return { wallets };
     } catch {
@@ -28,8 +32,10 @@ export const loadWallets = createAppAsyncThunk<LoadWalletsResult, void>(
 );
 
 export const loadWalletsReducer = (
-  builder: ActionReducerMapBuilder<EntityState<Wallet, string> & ExtraInitialState>,
-  walletsAdapter: EntityAdapter<Wallet, string>,
+  builder: ActionReducerMapBuilder<
+    EntityState<Wallet, string> & ExtraInitialState
+  >,
+  walletsAdapter: EntityAdapter<Wallet, string>
 ) => {
   builder
     .addCase(loadWallets.pending, state => {
@@ -42,8 +48,9 @@ export const loadWalletsReducer = (
     })
     .addCase(loadWallets.rejected, (state, action) => {
       state.loading = false;
-      state.error = action.error.message || "Failed to load wallets";
+      state.error =
+        action.payload || action.error.message || "Failed to load wallets";
     });
 
   return builder;
-}; 
+};

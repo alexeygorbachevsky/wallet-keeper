@@ -13,7 +13,7 @@ vi.mock("ethers", async () => {
     ethers: {
       ...actual.ethers,
       JsonRpcProvider: vi.fn().mockImplementation(() => ({
-        getBalance: vi.fn().mockResolvedValue("1000000000000000000"), // 1 ETH in wei
+        getBalance: vi.fn().mockResolvedValue("1000000000000000000"),
       })),
     },
   };
